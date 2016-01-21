@@ -1,0 +1,8 @@
+.DS_Store
+cron/
+html/root_settings.php
+inc/keys.php
+inc/keys-dev.php
+sass/.sass-cache/
+*.crt
+.codekit-cache/

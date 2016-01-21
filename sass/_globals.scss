@@ -1,0 +1,49 @@
+img{
+	border:0;
+	margin:0;
+	padding:0;
+	max-width: 100%;
+}
+
+
+body{
+	padding: 0;
+	margin: 0;
+	background-color:$c_background;
+	color:$c_text;
+	background-attachment:fixed !important;
+	font-family:arial;
+	-webkit-font-smoothing: antialiased;
+}
+
+.content{
+	@include clearfix;
+	background-color:$c_content_bg;
+	background-image: url('/img/sneaker_mesh_fabric.png');
+	padding:1px 0 0 0;
+}
+
+/* RETINA OVERRIDES */
+@include hidpi(1.5) {
+	.content{
+		background-image: url('/img/sneaker_mesh_fabric@2x.png');
+		background-size: 150px 111px;
+	}
+}
+
+section.content-box{
+	@include clearfix;
+	width:95%;
+	max-width:1400px;
+	min-height:250px;
+	margin:1em auto;
+	background-color:white;
+	box-shadow: 0 0 15px -5px #333333;
+	box-sizing:border-box;
+	padding:.5em;
+	position:relative;
+}
+
+a{
+	text-decoration:none;
+}

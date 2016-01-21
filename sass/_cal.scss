@@ -1,0 +1,96 @@
+
+section.month{
+	@include clearfix;
+	margin:1em auto;
+	width:95%;
+	max-width:1400px;
+	background-color:white;
+	border-radius:1em;
+	-webkit-box-shadow: 0 10px 15px -5px $c_dk;
+	-moz-box-shadow: 0 0px 15px -5px $c_dk;
+	box-shadow: 0 0px 15px -5px $c_dk;
+	h1{
+		padding: 1em 0;
+		font-size:1.5em;
+		font-family:'Sanchez', $helvetica;
+		text-align:center;
+		border-bottom:1px solid $c_lt;
+	}
+	ul.week{
+		@include clearfix;
+		border-bottom:1px solid $c_lt;
+		li.day{
+			width:14.28571428571429%;
+			float:left;
+			min-height:6em;
+			h3{
+				border-left:1px solid $c_lt;
+				padding:.25em 0 0 .3em;
+			}
+			ul{
+				margin:0 0 0 .3em;
+				li{
+					font-size:.7em;
+					border-bottom:1px dotted $c_md;
+					padding:0 0 .25em 0;
+					margin:0 0 .5em 0;
+				}
+			}
+			&.firstday{
+				h3{
+					border-left:none;
+				}
+			}
+		}
+	}
+}
+
+.nextmonth{
+	@include clearfix;
+	display:block;
+	width:174px;
+	margin:10px auto;
+	background-color:$c_lt;
+	border-radius:4px;
+	padding:3px;
+	span{
+		display:block;
+		width:100%;
+		background-color:$c_slt;
+		border-radius:4px;
+		padding:4px;
+		border:1px solid $c_md;
+		text-align:center;
+		font-family: $monospace;
+		font-size:14px;
+		color:#555;
+	}
+}
+
+
+
+@media screen and (max-width:729px) {
+	section.month{
+		min-height:4em;
+		h1{
+			padding:.75em .25em .5em .25em;
+			font-size:1.1em;
+			text-align:left;
+		}
+		ul.week{
+			border-bottom:none;
+			li.day{
+				float:none;
+				width:auto;
+				min-height:0;
+				margin-bottom:1.5em;
+				h3{
+					border-left:none;
+				}
+				&.empty{
+					display:none;
+				}
+			}
+		}
+	}
+}

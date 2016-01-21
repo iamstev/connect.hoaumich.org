@@ -1,0 +1,16 @@
+.contact-form{
+    label{
+        @include hoa_label;
+    }
+    input[type="text"]{
+        @include hoa_input;
+    }
+    button{
+        @include button($hoa-pink);
+        display:block;
+        margin: 1em auto 0 auto;
+    }
+    select{
+        width:100%;
+    }
+}
