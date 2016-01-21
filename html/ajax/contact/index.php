@@ -52,7 +52,7 @@ try{
                     <option value="hoa" >House Officers Association</option>
                 </select>
                 <label>Message</label>
-                <textarea id="contact-message"></textarea>
+                <textarea id="contact_message"></textarea>
                 <button id="contact-submit">Send Message</button>
             ';
             break;
@@ -66,6 +66,8 @@ try{
             }else{
                 throw new BannerException('<li>You did not enter a valid email address.</li>');
             }
+
+            $name = preg_replace('/[^0-9a-zA-Z\s]/', '', $data1['name']);
 
 
             switch($data1['dest']){
@@ -90,7 +92,19 @@ try{
                 default : { throw new Exception('There was an error with the contact form. (ref: invalid destination)');}
             }
 
-            $message_html = $data1['name'];
+            $message_html .= '<p>Someone use the contact form on the HOA Connect website.</p>';
+            $message_html .= '
+                <table>
+                    <tr>
+                        <td style="text-align:right;">Name: </td>
+                        <td style="font-weight:bold;">'.$name.'</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align:right;">Email: </td>
+                        <td style="font-weight:bold;">'.$email.'</td>
+                    </tr>
+                </table>';
+            $message_html .= $data1['msg'];
 
             $args = array(
         		'message' => array(

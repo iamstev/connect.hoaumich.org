@@ -23,12 +23,14 @@ function contact(step, data1){
 				document.getElementById('modal_content').innerHTML = data.html;
 				if(step === 1){
 					showModal('ajax-modal');
-					CKEDITOR.replace('contact-message', { toolbar : 'simplelink' });
+					CKEDITOR.replace('contact_message', { toolbar : 'simplelink' });
 					$('#contact-submit').click(function() {
+						var msg = CKEDITOR.instances.contact_message.getData();
                         var dd = {
                             "name" : document.getElementById('contact-name').value,
 							"email" : document.getElementById('contact-email').value,
-							"dest" : document.getElementById('contact-dest').value
+							"dest" : document.getElementById('contact-dest').value,
+							"msg" : msg
                         };
 						closeTopError();
                         contact(2, dd);
