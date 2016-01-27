@@ -92,7 +92,7 @@ try{
                 default : { throw new Exception('There was an error with the contact form. (ref: invalid destination)');}
             }
 
-            $message_html .= '<p>Someone use the contact form on the HOA Connect website.</p>';
+            $message_html .= '<p>Someone used the contact form on the HOA Connect website.</p>';
             $message_html .= '
                 <table>
                     <tr>

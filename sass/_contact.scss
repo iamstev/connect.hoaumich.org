@@ -13,4 +13,15 @@
     select{
         width:100%;
     }
+    table{
+        th{
+            color:#888888;
+            padding-right:1em;
+            padding-bottom:.5em;
+            text-align:right;
+        }
+        td{
+            padding-botton:.5em;
+        }
+    }
 }
