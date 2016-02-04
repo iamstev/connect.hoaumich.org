@@ -8,9 +8,9 @@ print'
 		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 		<meta name="viewport" content="width=device-width">
 		<meta name="viewport" content="initial-scale=1.0">
-		<link href="http://fonts.googleapis.com/css?family=Questrial" rel="stylesheet" type="text/css">
-		<link href="http://fonts.googleapis.com/css?family=Sanchez:400italic,400" rel="stylesheet" type="text/css">
-		<link href="http://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+		<link href="https://fonts.googleapis.com/css?family=Questrial" rel="stylesheet" type="text/css">
+		<link href="https://fonts.googleapis.com/css?family=Sanchez:400italic,400" rel="stylesheet" type="text/css">
+		<link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
 		<link rel="stylesheet" type="text/css" media="all" href="/css/connect.css" />
 		<script type="text/javascript" src="/js/scripts.js"></script>
 		<script type="text/javascript">
