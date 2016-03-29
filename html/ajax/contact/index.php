@@ -17,8 +17,7 @@ $db2use = array(
 
 
 /* LOAD FUNC-CLASS-LIB */
-require_once('libraries/drill/drill.php');
-$drill = new \Gajus\Drill\Client($apikey['mandrill']);
+require_once('classes/ElasticEmail.class.php');
 class BannerException extends Exception{}
 
 
@@ -60,33 +59,30 @@ try{
 
         case '2': {
 
+            $ee = new stev_eemail($apikey['elastic']['key'], $apikey['elastic']['cert']);
+
             if(filter_var($data1['email'], FILTER_VALIDATE_EMAIL)){
                 $email = $data1['email'];
-                $headers = array( "Reply-To" => $email );
             }else{
                 throw new BannerException('<li>You did not enter a valid email address.</li>');
             }
 
             $name = preg_replace('/[^0-9a-zA-Z\s]/', '', $data1['name']);
 
-
             switch($data1['dest']){
                 case 'connect' : {
                     $dest_name = 'HOA Connect';
-                    $to = [['email' => $emailaddress['connect'], 'type' => 'to', 'name' => $dest_name]];
+                    $to = $emailaddress['connect'];
                     break;
                 }
                 case 'hoa' : {
                     $dest_name = 'House Officers Association';
-                    $to = [['email' => $emailaddress['hoa'], 'type' => 'to', 'name' => $dest_name]];
+                    $to = $emailaddress['hoa'];
                     break;
                 }
                 case 'playgroup' : {
                     $dest_name = 'Connect Playgroup - Tots of Docs';
-                    $to = [
-                        ['email' => $emailaddress['playgroup'], 'type' => 'to', 'name' => $dest_name],
-                        ['email' => $emailaddress['connect'], 'type' => 'cc', 'name' => 'HOA Connect']
-                    ];
+                    $to = $emailaddress['playgroup'];
                     break;
                 }
                 default : { throw new Exception('There was an error with the contact form. (ref: invalid destination)');}
@@ -106,29 +102,21 @@ try{
                 </table>';
             $message_html .= $data1['msg'];
 
-            $args = array(
-        		'message' => array(
-        			"html" => $message_html,
-        			"from_email" => "bot@hoaumich.org",
-        			"from_name" => "HOA.bot",
-        			"subject" => "HOA Connect Contact Form (Ticket #".time()." )",
-        			"to" => $to,
-        			"headers" => $headers,
-        			"track_opens" => true,
-        			"track_clicks" => false,
-        			"auto_text" => true
-        		)
-        	);
-            $r = $drill->api('messages/send', $args);
-            if($r['status']== 'error'){
-                $error  = '1';
-                $h1     = 'Contact Us - Error';
-                $html   = '<p>There was error with the contact form. (ref: mandrill)</p>';
-            }else{
-                $error  = '0';
-                $h1     = 'Contact Us';
-                $html   = '<p>Your message has been sent to, <strong>'.$dest_name.'</strong>. Thank you.</p>';
-            }
+            $ee->params = array(
+                'to'        => $to,
+                'from'      => 'bot@hoaumich.org',
+                'from_name' => 'HOA.bot',
+                'reply_to'  => $email,
+                'subject'   => "HOA Connect Contact Form (Ticket #".time()." )",
+                'body_html' => $message_html
+            );
+
+            $r = $ee->mailer('send');
+
+            $error  = '0';
+            $h1     = 'Contact Us';
+            $html   = '<p>Your message has been sent to, <strong>'.$dest_name.'</strong>. Thank you.</p>';
+
             break;
 
         }
@@ -136,51 +124,10 @@ try{
         default:
             throw new Exception('There was error with the contact form. (ref: invalid step)');
     }
-} catch (\Gajus\Drill\Exception\RuntimeException\ValidationErrorException $e) {
-    // @see https://mandrillapp.com/api/docs/messages.html
+}catch (ElasticEmailException $e){
     $error  = '1';
     $h1     = 'Contact Us - Error';
-    $html   = '<p>There was error with the contact form. (ref: mandrill)</p>';
-} catch (\Gajus\Drill\Exception\RuntimeException\UserErrorException $e) {
-    // @see https://mandrillapp.com/api/docs/messages.html
-    $error  = '1';
-    $h1     = 'Contact Us - Error';
-    $html   = '<p>There was error with the contact form. (ref: mandrill)</p>';
-} catch (\Gajus\Drill\Exception\RuntimeException\UnknownSubaccountException $e) {
-    // @see https://mandrillapp.com/api/docs/messages.html
-    $error  = '1';
-    $h1     = 'Contact Us - Error';
-    $html   = '<p>There was error with the contact form. (ref: mandrill)</p>';
-} catch (\Gajus\Drill\Exception\RuntimeException\PaymentRequiredException $e) {
-    // @see https://mandrillapp.com/api/docs/messages.html
-    $error  = '1';
-    $h1     = 'Contact Us - Error';
-    $html   = '<p>There was error with the contact form. (ref: mandrill)</p>';
-} catch (\Gajus\Drill\Exception\RuntimeException\GeneralErrorException $e) {
-    // @see https://mandrillapp.com/api/docs/messages.html
-    $error  = '1';
-    $h1     = 'Contact Us - Error';
-    $html   = '<p>There was error with the contact form. (ref: mandrill)</p>';
-} catch (\Gajus\Drill\Exception\RuntimeException\ValidationErrorException $e) {
-    // @see https://mandrillapp.com/api/docs/messages.html
-    $error  = '1';
-    $h1     = 'Contact Us - Error';
-    $html   = '<p>There was error with the contact form. (ref: mandrill)</p>';
-} catch (\Gajus\Drill\Exception\RuntimeException $e) {
-    // All possible API errors.
-    $error  = '1';
-    $h1     = 'Contact Us - Error';
-    $html   = '<p>There was error with the contact form. (ref: mandrill)</p>';
-} catch (\Gajus\Drill\Exception\InvalidArgumentException $e) {
-    // Invalid SDK use errors.
-    $error  = '1';
-    $h1     = 'Contact Us - Error';
-    $html   = '<p>There was error with the contact form. (ref: mandrill)</p>';
-} catch (\Gajus\Drill\Exception\DrillException $e) {
-    // Everything.
-    $error  = '1';
-    $h1     = 'Contact Us - Error';
-    $html   = '<p>There was error with the contact form. (ref: mandrill)</p>';
+    $html   = '<p>There was error with the contact form. (ref: elastic)</p>';
 }catch(mysqli_sql_exception $e){
     $error  = '1';
     $h1     = 'Contact Us - Error';
