@@ -53,7 +53,7 @@ print'
 
 if($news['image'] !== null){
 	print'
-		<div class="header-holder covered" style="background-image: url(\''.$protocol.'hoaumich.org/img/user/'.$news['image'].'\')">
+		<div class="header-holder covered" style="background-image: url(\''.$protocol.$static_site.'/news/cover/'.$news['image'].'\')">
 	';
 }else{
 	print'

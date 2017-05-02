@@ -145,7 +145,7 @@ print'
     </section>
 	<ul class="promos">
 		<li id="promo1">
-    		<a href="'.$protocol.$site.'/news/article/'.$home_news[0]['article'].'" style="background-image:url(\''.$protocol.'hoaumich.org/img/user/'.$home_news[0]['image'].'\');">
+    		<a href="'.$protocol.$site.'/news/article/'.$home_news[0]['article'].'" style="background-image:url(\''.$protocol.$static_site.'/news/cover/'.$home_news[0]['image'].'\');">
     			<div class="promo-text">
     				<div class="headline">'.$home_news[0]['headline'].'</div>
     				<div class="deck">'.$home_news[0]['strapline'].'</div>
@@ -153,7 +153,7 @@ print'
     		</a>
 		</li>
         <li id="promo2">
-    		<a href="'.$protocol.$site.'/news/article/'.$home_news[1]['article'].'" style="background-image:url(\''.$protocol.'hoaumich.org/img/user/'.$home_news[1]['image'].'\');">
+    		<a href="'.$protocol.$site.'/news/article/'.$home_news[1]['article'].'" style="background-image:url(\''.$protocol.$static_site.'/news/cover/'.$home_news[1]['image'].'\');">
     			<div class="promo-text">
     				<div class="headline">'.$home_news[1]['headline'].'</div>
     				<div class="deck">'.$home_news[1]['strapline'].'</div>
@@ -161,7 +161,7 @@ print'
     		</a>
 		</li>
         <li id="promo3">
-    		<a href="'.$protocol.$site.'/news/article/'.$home_news[2]['article'].'" style="background-image:url(\''.$protocol.'hoaumich.org/img/user/'.$home_news[2]['image'].'\');">
+    		<a href="'.$protocol.$site.'/news/article/'.$home_news[2]['article'].'" style="background-image:url(\''.$protocol.$static_site.'/news/cover/'.$home_news[2]['image'].'\');">
     			<div class="promo-text">
     				<div class="headline">'.$home_news[2]['headline'].'</div>
     				<div class="deck">'.$home_news[2]['strapline'].'</div>
