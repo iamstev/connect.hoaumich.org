@@ -30,7 +30,7 @@
             padding:1.5em .5em .5em .5em;
             color:white;
             filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#e6000000',GradientType=0 ); /* IE6-9 */
-            @include linear-gradient(top, rgba(0,0,0,0) 0%,rgba(0,0,0,0.6) 30%,rgba(0,0,0,0.9) 100%);
+            background: linear-gradient(top, rgba(0,0,0,0) 0%,rgba(0,0,0,0.6) 30%,rgba(0,0,0,0.9) 100%);
         }
         .headline{
             font-size:1.5em;
@@ -45,7 +45,7 @@
     #promo3{
         margin-right:0;
     }
-    @include media(max-width 1000px){
+    @media(max-width: 1000px){
         #promo1{
             float:none;
             margin-right:0;
@@ -59,7 +59,7 @@
             width:48.75%;
         }
     }
-    @include media(max-width 650px){
+    @media(max-width: 650px){
         #promo2, #promo3{
             float:none;
             margin-right:0;
@@ -70,7 +70,7 @@
             }
         }
     }
-    @include media(max-width 450px){
+    @media(max-width: 450px){
         #promo1, #promo2, #promo3{
             a{
                 padding-top:60%;
@@ -107,7 +107,7 @@ $c_bdr_md: #BBBBBB;
             padding:.5em;
             background-color:white;
             font-size:1.2em;
-            font-family:'Sanchez', $helvetica;
+            font-family:'Sanchez', $font-stack-helvetica;
             text-align:center;
         }
         @include clearfix;
@@ -302,11 +302,11 @@ $c_bdr_md: #BBBBBB;
 				padding:0 0 .25em 0;
 				border-bottom:solid 1px $c_bdr_md;
 				font-size:1.5em;
-				font-family:'Sanchez', $helvetica;
+				font-family:'Sanchez', $font-stack-helvetica;
 				color:black;
 			}
 			h2{
-				font-family: $helvetica;
+				font-family: $font-stack-helvetica;
 				text-align:left;
 				font-size:2em;
 				font-weight:200;

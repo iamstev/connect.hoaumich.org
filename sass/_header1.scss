@@ -27,7 +27,7 @@ header{
 	}
 	.mission{
 		@include clearfix;
-		font-family:$helvetica;
+		font-family:$font-stack-helvetica;
 		font-weight:200;
 		font-size:1em;
 		color:white;
@@ -128,7 +128,7 @@ header{
 
 
 /* RETINA OVERRIDES */
-@include hidpi(1.5) {
+@media only screen and (min-resolution: 1.5dppx) {
 	header h1{
 		background-image: url('/img/connect-logo@2x.png');
 		background-size: 166px 100px;

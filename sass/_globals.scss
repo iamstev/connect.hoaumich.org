@@ -24,7 +24,7 @@ body{
 }
 
 /* RETINA OVERRIDES */
-@include hidpi(1.5) {
+@media only screen and (min-resolution: 1.5dppx) {
 	.content{
 		background-image: url('/img/sneaker_mesh_fabric@2x.png');
 		background-size: 150px 111px;
